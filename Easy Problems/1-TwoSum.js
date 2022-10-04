@@ -1,5 +1,3 @@
-
-
 /*
 
 Leetcode 1. Two Sum
@@ -27,9 +25,6 @@ Constraints:
     -109 <= target <= 109
 
 Only one valid answer exists.
-
-
-Solution Link: https://www.youtube.com/watch?v=KLlXCFG5TnA&t=5s&ab_channel=NeetCode
 
 */
 
