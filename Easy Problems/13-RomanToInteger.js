@@ -63,12 +63,12 @@ const romantoInt = (s) => {
         let currentRoman = s[i];
         let nextRoman = s[i + 1];
 
-        if(map[currentRoman] > map[nextRoman]){
-            total += map[currentRoman];
-        }
-        else{
+        if(map[currentRoman] < map[nextRoman]){
             total += map[nextRoman] - map[currentRoman];
             i++;
+        }
+        else{
+            total += map[currentRoman];
         }
     }
     return total;
@@ -102,7 +102,8 @@ const romantoInt = (s) => {
 
 // Tests:
 
-console.log(romantoInt('MCMXCIV'))
+console.log(romantoInt('LVIII'))
+// console.log(romantoInt('MCMXCIV'))
 // console.log(romantoInt('I'))
 // console.log(romantoInt('IV'))
 // console.log(romantoInt('V'))
