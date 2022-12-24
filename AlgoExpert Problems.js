@@ -42,13 +42,10 @@ console.log(twoNumberSum(arr, target));
 //#region first-non-repeating-character 
 
 function firstNonRepeatingCharacter(string) {
-    if(string.length === 0) return -1;
-    let maps = new Map();
+    let cMap = new Map();
     let chars = string.split('');
-    chars.forEach(char => {
-        maps.set(char, (maps.get(char) == undefined) ? 1 : maps.get(char) + 1);
-    });
-    let filtered = [...maps].filter(([k, v]) => v === 1);
+    chars.forEach(char => {cMap.set(char, (cMap.get(char) == undefined) ? 1 : cMap.get(char) + 1)});
+    let filtered = [...cMap].filter(([k, v]) => v === 1);
     return filtered.length !== 0 ? chars.indexOf(filtered[0][0]) : -1;
 }
 
