@@ -74,6 +74,21 @@ console.log(generateDocument('abcabc','abc'));
 
 //#endregion
 
+//#region class-photos 
+
+function classPhotos(redShirtHeights, blueShirtHeights) {
+    redShirtHeights.sort((a, b) => a - b);
+    blueShirtHeights.sort((a, b) => a - b);
+    let isRedTaller = redShirtHeights[0] > blueShirtHeights[0];
+    return redShirtHeights.every((el,ind) => isRedTaller ? el > blueShirtHeights[ind] : el < blueShirtHeights[ind]);
+}
+
+let reds = [5,8,1,3,4];
+let blues = [6,9,2,4,5];
+
+console.log(classPhotos(reds, blues));
+
+//#endregion
 
 //#endregion
 
