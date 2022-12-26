@@ -90,6 +90,30 @@ console.log(classPhotos(reds, blues));
 
 //#endregion
 
+//#region run-length-encoding 
+
+function runLengthEncoding(string) {
+    let output = '';
+    let count = 1;
+    let currentChar = null;
+    for (let i = 0; i < string.length; i++) {
+        currentChar = string[i];
+        if (currentChar === string[i + 1] && count < 9) {
+            count++
+        } else {
+            output += `${count}${currentChar}`;
+            count = 1;
+        }
+    }
+    return output;
+}
+
+console.log(runLengthEncoding('AAAAAAAAAAAAABBCCCCDD'));
+
+//#endregion
+
+
+
 //#endregion
 
 
