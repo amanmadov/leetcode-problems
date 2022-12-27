@@ -112,7 +112,35 @@ console.log(runLengthEncoding('AAAAAAAAAAAAABBCCCCDD'));
 
 //#endregion
 
+//#region tandem-bicycle 
 
+function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
+    redShirtSpeeds.sort((a, b) => a - b);
+    blueShirtSpeeds.sort((a, b) => a - b)
+
+    return fastest ?
+        redShirtSpeeds.reverse().reduce((acc, curr, ind) => acc + Math.max(curr, blueShirtSpeeds[ind]), 0)
+        :
+        redShirtSpeeds.reduce((acc, curr, ind) => acc + Math.max(curr, blueShirtSpeeds[ind]), 0);
+}
+
+// better approach
+function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
+    redShirtSpeeds.sort((a, b) => a - b);
+    blueShirtSpeeds.sort((a, b) => fastest ? b - a)
+    return redShirtSpeeds.reduce((acc, curr, ind) => acc + Math.max(curr, blueShirtSpeeds[ind]), 0);
+}
+
+let blues = [5, 5, 3, 9, 2];
+let reds = [3, 6, 7, 2, 1];
+
+console.log(tandemBicycle(blues, reds, false))
+
+// important: sorting array in descending order
+arr.sort((a, b) => b - a)
+
+
+//#endregion
 
 //#endregion
 
