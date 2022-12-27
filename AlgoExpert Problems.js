@@ -158,7 +158,41 @@ console.log(caesarCipherEncryptor('xyz',2));
 
 //#endregion
 
+//#region find-three-largest-numbers 
 
+function findThreeLargestNumbers(array) {
+    let bigTriple = [array[0], array[1], array[2]].sort((a, b) => b - a);
+    for (let i = 3; i < array.length; i++) {
+        for (let j = 0; j < bigTriple.length; j++) {
+            if(array[i] > bigTriple[j]){
+                bigTriple.splice(j, 0, array[i]);
+                bigTriple.pop();
+                break;
+            }
+        }
+    }
+    return bigTriple.sort((a, b) => a - b);
+}
+
+// better approach
+function findThreeLargestNumbers(array) {
+    const largest = [array[0], array[1], array[2]];
+    for (let i = 3; i < array.length; i++) {
+        const minVal = Math.min(...largest);
+        if(array[i] > minVal){
+            const minIndex = largest.indexOf(minVal);
+            largest[minIndex] = array[i]; 
+        }
+    }
+    return largest.sort((a, b) => a - b);
+}
+
+
+let arr = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7];
+
+console.log(findThreeLargestNumbers(arr));
+
+//#endregion
 
 //#endregion
 
