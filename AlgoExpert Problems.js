@@ -142,6 +142,24 @@ arr.sort((a, b) => b - a)
 
 //#endregion
 
+//#region caesar-cipher-encryptor 
+
+function caesarCipherEncryptor(string, key) {
+    let output = '';
+    for (const char of string) {
+        let charCode = char.charCodeAt(0);
+        let isOutRange = charCode + key % 26 > 122;
+        isOutRange ? output += String.fromCharCode((charCode + key % 26 - 26)) : output += String.fromCharCode((charCode + key % 26))
+    }
+    return output;
+}
+
+console.log(caesarCipherEncryptor('xyz',2));
+
+//#endregion
+
+
+
 //#endregion
 
 
