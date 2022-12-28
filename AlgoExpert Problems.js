@@ -194,6 +194,29 @@ console.log(findThreeLargestNumbers(arr));
 
 //#endregion
 
+//#region product-sum 
+
+function productSum(array, d = 1) {
+    let sum = 0;
+
+    for (const item of array) {
+        if(typeof item === 'number'){
+            sum += item;
+        } else {
+            sum += productSum(item, d+1);
+        }
+    }           
+
+    return sum * d;
+}
+
+let arr = [5, 2, [7, -1], 3, [6, [-13, 8], 4]];
+console.log(productSum(arr));
+
+//#endregion
+
+
+
 //#endregion
 
 
