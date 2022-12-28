@@ -215,6 +215,31 @@ console.log(productSum(arr));
 
 //#endregion
 
+//#region tournament-winner 
+
+function tournamentWinner(competitions, results) {
+    const map = new Map();
+    competitions.forEach((el, i) => {
+        let winner = competitions[i].at(!results[i]);
+        let looser = competitions[i].at(results[i]);
+        map.has(winner) ? map.set(winner, map.get(winner) + 3) : map.set(winner, 3);
+        map.has(looser) ? map.set(looser, map.get(looser) + 0) : map.set(looser, 0);
+    });
+    const sortedMap = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
+    return sortedMap.entries().next().value[0];
+}
+
+let comp = [
+    ['HTML', 'C#'],
+    ['C#', 'Python'],
+    ['Python', 'HTML']
+];
+let results = [0, 0, 1];
+
+console.log(tournamentWinner(comp, results));
+
+//#endregion
+
 
 
 //#endregion
@@ -310,7 +335,16 @@ const iteratorKeys = map1.keys();
 const iteratorValues = map1.values();
 // The values() method returns a new iterator object that contains the values for each element in the Map object in insertion order.
 
+// sorting maps on value
+const sortedMap = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
+
 //#endregion
 
+//#region Other 
+
+// Get array value at given index
+let valAtGivenIndex = array.at(givenIndex);
+
+//#endregion
 
 //#endregion
