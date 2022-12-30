@@ -298,6 +298,46 @@ console.log(isValidSubsequence(arr, seq));
 
 //#endregion
 
+//#region palindrome-check 
+
+function isPalindrome(string) {
+    return string === string.split('').reverse().join('');
+}
+
+// another approach O(n) time | O(1) space
+function isPalindrome(string) {
+    let leftIndex = 0;
+    let rightIndex = str.length - 1;
+    while (rightIndex > leftIndex) {
+        if (str[leftIndex] !== str[rightIndex]) return false;
+        leftIndex++;
+        rightIndex--;
+    }
+    return true;
+}
+
+// another approach O(n) time | O(n) space
+function isPalindrome(string) {
+    let reversed = [];
+    for (let index = str.length - 1; index >= 0; index--) {
+        reversed.push(str[index]);
+    }
+    return reversed.join('') === string;
+}
+
+// another approach O(n^2) time | O(n) space
+function isPalindrome(string) {
+    let reversedString = '';
+    for (let index = str.length - 1; index >= 0; index--) {
+        reversedString += str[index];
+    }
+    return reversedString === string;
+}
+
+let str = 'abcda';
+console.log(isPalindrome(str));
+
+//#endregion
 
 
 //#endregion
