@@ -72,8 +72,8 @@ console.log(firstNonRepeatingCharacter('aaaaaaaaaaaaaaaaaaaabbbbbbbbbbcccccccccc
 function generateDocument(characters, document) {
     let cMap = new Map();
     let dMap = new Map();
-    characters.split('').forEach(char => {cMap.set(char, cMap.get(char) == undefined ? 1 : cMap.get(char) + 1)});
-    document.split('').forEach(char => {dMap.set(char, dMap.get(char) == undefined ? 1 : dMap.get(char) + 1)});
+    characters.split('').forEach(char => { cMap.set(char, cMap.get(char) == undefined ? 1 : cMap.get(char) + 1) });
+    document.split('').forEach(char => { dMap.set(char, dMap.get(char) == undefined ? 1 : dMap.get(char) + 1) });
 
     for (const [key, value] of dMap) {
         if (!cMap.has(key)) return false;
@@ -83,7 +83,51 @@ function generateDocument(characters, document) {
     return true;
 }
 
-console.log(generateDocument('abcabc','abc'));
+console.log(generateDocument('abcabc', 'abc'));
+
+// another approach
+// O(m * (n + m)) time | O(1) space - where n is the number
+// of characters and m is the length of the document
+function generateDocument(characters, document) {
+    for (const letter of document) {
+        let frequencyInDocument = getFrequency(document, letter);
+        let frequencyInCharacters = getFrequency(characters, letter);
+        if (frequencyInDocument > frequencyInCharacters) return false;
+    }
+    return true;
+
+    function getFrequency(str, char) {
+        let frequency = 0;
+        for (const c of str) {
+            if (c === char) frequency++;
+        }
+        return frequency;
+    }
+}
+
+// another approach
+// O(c * (n + m)) time | O(c) space - where n is the number of characters, m is
+// the length of the document, and c is the number of unique characters in the document
+function generateDocument(characters, document) {
+    const alreadyCounted = new Set();
+    for (const letter of document) {
+        if (letter in alreadyCounted) continue;
+        let frequencyInDocument = getFrequency(document, letter);
+        let frequencyInCharacters = getFrequency(characters, letter);
+        if (frequencyInDocument > frequencyInCharacters) return false;
+        alreadyCounted.add(letter);
+    }
+    return true;
+
+    function getFrequency(str, char) {
+        let frequency = 0;
+        for (const c of str) {
+            if (c === char) frequency++;
+        }
+        return frequency;
+    }
+}
+
 
 //#endregion
 
