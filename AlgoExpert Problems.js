@@ -269,6 +269,22 @@ function nonConstructibleChange(coins) {
 
 //#endregion
 
+//#region validate-subsequence 
+
+function isValidSubsequence(array, sequence) {
+    let seqIndex = 0;
+    for (const num of array) {
+        if (num === sequence[seqIndex]) seqIndex++;
+    }
+    return seqIndex === sequence.length;
+}
+
+const arr = [5, 1, 22, 25, 6, -1, 8, 10, 10];
+const seq = [1, 6, -1, 10];
+console.log(isValidSubsequence(arr, seq));
+
+//#endregion
+
 
 
 //#endregion
