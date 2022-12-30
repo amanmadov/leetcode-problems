@@ -30,6 +30,19 @@ function twoNumberSum(array, targetSum) {
     return [];
 }
 
+// another approach
+function twoNumberSum(array, targetSum) {
+    let leftIndex = 0;
+    let rightIndex = array.length - 1;
+    array.sort((a, b) => a - b);
+    while (leftIndex < rightIndex) {
+        if (array[leftIndex] + array[rightIndex] === targetSum) return [array[leftIndex], array[rightIndex]];
+        if (array[leftIndex] + array[rightIndex] > targetSum) rightIndex--;
+        if (array[leftIndex] + array[rightIndex] < targetSum) leftIndex++;
+    }
+    return [];
+}
+
 let arr = [3, 5, -4, 8, 11, 1, -1, 6];
 let target = 10;
 console.log(twoNumberSum(arr, target));
