@@ -1,7 +1,7 @@
 /* ALGOEXPERT ALGORITHM QUESTIONS */
 
 
-//#region EASY 
+//#region EASY QUESTIONS
 
 
 //#region two-number-sum
@@ -300,6 +300,7 @@ console.log(isValidSubsequence(arr, seq));
 
 //#region palindrome-check 
 
+// Possibly O(3n) time | O(1) space
 function isPalindrome(string) {
     return string === string.split('').reverse().join('');
 }
@@ -344,23 +345,7 @@ console.log(isPalindrome(str));
 
 
 
-//#region MEDIUM 
-
-
-
-//#endregion
-
-//#region HARD 
-
-
-
-//#endregion
-
-
-
-
 //#region JS Additional Notes 
-
 
 //#region Maps 
 
@@ -506,6 +491,28 @@ if(!array.length)
     
     // 2. every() - 0(n)
     // This function Return a boolean value as true if all the items apply the given condition, and false if not.
+
+    // 3. split(del) - O(n*del.length)
+    // With an empty delimiter argument, split is essentially equivalent to:
+
+    var len = string.length;
+    var result = Array(len)
+    for (i = 0; i < len; i++) {
+        result[i] = string[i];
+    }
+
+    // This is O(len).
+    // With a delimiter, it becomes O(string.length * delimiter.length), because at each step in the loop it has to test whether there's a match for delimiter.
+
+    // 4. reverse() - O(n)
+    // The reverse() method reverses an array in-place. The first array element becomes the last, and the last array element becomes the first.
+
+    // 5. join() - O(n)
+    // The join() method creates and returns a new string by concatenating all of the elements in an array
+
+
+    // Link: https://javascript.plainenglish.io/under-the-hood-worst-case-complexities-workings-of-popular-js-array-methods-739d5fef314a
+
 
 //#endregion
 
