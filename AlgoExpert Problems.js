@@ -240,6 +240,35 @@ console.log(tournamentWinner(comp, results));
 
 //#endregion
 
+//#region non-constructible-change 
+
+function nonConstructibleChange(coins) {
+    if (!coins.lentgh) return 1;
+
+    coins.sort((a, b) => a - b);
+    let currentSum = 0;
+    for (const num of coins) {
+        if (num > currentSum + 1) return currentSum + 1;
+        currentSum += num;
+    }
+    return currentSum + 1;
+}
+
+let arr = [5, 7, 1, 1, 2, 3, 22];
+console.log(nonConstructibleChange(arr));
+
+// alternate approach
+function nonConstructibleChange(coins) {
+    coins.sort((a, b) => a - b);
+    let currentChange = 1;
+    const sortCoins = coins.sort((a, b) => a - b)
+        .forEach(coin => coin < currentChange + 1 ? currentChange += coin : 0)
+    return currentChange;
+}
+
+
+//#endregion
+
 
 
 //#endregion
@@ -344,6 +373,9 @@ const sortedMap = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
 
 // Get array value at given index
 let valAtGivenIndex = array.at(givenIndex);
+
+// checking array length if (array.length < 1)
+if(!array.length)
 
 //#endregion
 
