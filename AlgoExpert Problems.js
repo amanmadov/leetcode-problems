@@ -231,6 +231,7 @@ console.log(caesarCipherEncryptor('xyz',2));
 
 //#region find-three-largest-numbers 
 
+// O(n^2) time | O(n) space
 function findThreeLargestNumbers(array) {
     let bigTriple = [array[0], array[1], array[2]].sort((a, b) => b - a);
     for (let i = 3; i < array.length; i++) {
@@ -258,9 +259,42 @@ function findThreeLargestNumbers(array) {
     return largest.sort((a, b) => a - b);
 }
 
+// alternate approach 
+// O(n) time | O(1) space complexity
+function findThreeLargestNumbers(array) {
+    const bigTriple = [null, null, null];
+    for (const num of array) {
+        compareNum(bigTriple, num);
+    }
+
+    function compareNum(arr, num) {
+        if (bigTriple[2] === null || bigTriple[2] < num) {
+            relocateNum(bigTriple, 2, num);
+            return;
+        }
+
+        if (bigTriple[1] === null || bigTriple[1] < num) {
+            relocateNum(bigTriple, 1, num);
+            return;
+        }
+
+
+        if (bigTriple[0] === null || bigTriple[0] < num) {
+            relocateNum(bigTriple, 0, num);
+            return;
+        }
+    }
+
+    function relocateNum(arr, index, number) {
+        for (let i = 0; i <= index; i++) {
+            i === index ? arr[i] = number : arr[i] = arr[i + 1];
+        }
+    }
+
+    return bigTriple;
+}
 
 let arr = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7];
-
 console.log(findThreeLargestNumbers(arr));
 
 //#endregion
@@ -488,6 +522,13 @@ let valAtGivenIndex = array.at(givenIndex);
 
 // checking array length if (array.length < 1)
 if(!array.length)
+
+// 1. We can assume good hash table implementations have practically O(1) time complexity.
+// 2. Here is a blog posted by V8 team explains how some memory optimization was done on its hashtable 
+//    implementation for Map, Set, WeakSet, and WeakMap: Optimizing hash tables: hiding the hash code
+//    Link: https://v8.dev/blog/hash-code
+
+// Based on 1 and 2: V8's Set and Map's get & set & add & has time complexity practically is O(1).
 
 //#endregion
 
