@@ -436,10 +436,9 @@ console.log(isPalindrome(str));
 //#endregion
 
 
-
 //#region JS Additional Notes 
 
-//#region Maps 
+//#region Implementation of Maps in JS
 
 // Map objects are collections of key-value pairs. A key in the Map may only occur once; it is unique in the Map's collection. 
 // A Map object is iterated by key-value pairs — a for...of loop returns a 2-member array of [key, value] for each iteration. 
@@ -456,62 +455,62 @@ console.log(isPalindrome(str));
     // - Map performs better in scenarios involving frequent additions and removals of key-value pairs.
 
 
-const map1 = new Map();
+    const map1 = new Map();
 
-map1.set('a', 1);
-map1.set('b', 2);
-map1.set('c', 3);
+    map1.set('a', 1);
+    map1.set('b', 2);
+    map1.set('c', 3);
 
-console.log(map1.get('a'));
-// expected output: 1
+    console.log(map1.get('a'));
+    // expected output: 1
 
-map1.set('a', 97);
+    map1.set('a', 97);
 
-console.log(map1.get('a'));
-// expected output: 97
+    console.log(map1.get('a'));
+    // expected output: 97
 
-console.log(map1.size);
-// expected output: 3
+    console.log(map1.size);
+    // expected output: 3
 
-map1.delete('b'); // removes the specified element from a Map object by key.
+    map1.delete('b'); // removes the specified element from a Map object by key.
 
-console.log(map1.size);
-// expected output: 2
+    console.log(map1.size);
+    // expected output: 2
 
-map1.clear(); // removes all elements from a Map object.
+    map1.clear(); // removes all elements from a Map object.
 
-const map2 = new Map();
+    const map2 = new Map();
 
-map2.set('0', 'foo');
-map2.set(1, 'bar');
+    map2.set('0', 'foo');
+    map2.set(1, 'bar');
 
-const iterator1 = map2.entries();
+    const iterator1 = map2.entries();
 
-// The entries() method returns a new iterator object that contains the [key, value] pairs for each element in the Map object in insertion order. 
-// In this particular case, this iterator object is also an iterable, so the for-of loop can be used. 
+    // The entries() method returns a new iterator object that contains the [key, value] pairs for each element in the Map object in insertion order. 
+    // In this particular case, this iterator object is also an iterable, so the for-of loop can be used. 
 
-console.log(iterator1.next().value);
-// expected output: ["0", "foo"]
+    console.log(iterator1.next().value);
+    // expected output: ["0", "foo"]
 
-console.log(iterator1.next().value);
-// expected output: [1, "bar"]
+    console.log(iterator1.next().value);
+    // expected output: [1, "bar"]
 
-map2.set('bar', 'foo');
+    map2.set('bar', 'foo');
 
-console.log(map2.has('bar'));
-// expected output: true
+    console.log(map2.has('bar'));
+    // expected output: true
 
-console.log(map2.has('foo'));
-// expected output: false
+    console.log(map2.has('foo'));
+    // expected output: false
 
-const iteratorKeys = map1.keys();
-// The keys() method returns a new iterator object that contains the keys for each element in the Map object in insertion order.
+    const iteratorKeys = map1.keys();
+    // The keys() method returns a new iterator object that contains the keys for each element in the Map object in insertion order.
 
-const iteratorValues = map1.values();
-// The values() method returns a new iterator object that contains the values for each element in the Map object in insertion order.
+    const iteratorValues = map1.values();
+    // The values() method returns a new iterator object that contains the values for each element in the Map object in insertion order.
 
-// sorting maps on value
-const sortedMap = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
+    // sorting maps on value
+    const sortedMap = new Map([...map.entries()].sort((a, b) => b[1] - a[1]));
 
 //#endregion
 
@@ -523,6 +522,52 @@ let valAtGivenIndex = array.at(givenIndex);
 // checking array length if (array.length < 1)
 if(!array.length)
 
+
+
+//#endregion
+
+//#region Time Complexity of Javascript Data Structures
+
+// For all JS developers, whether you are working professionally or trying to crack the
+// much feared coding interview, using in-built array methods like .filter(), .reduce(),
+// .map(), etc. is second nature to us.
+
+// These methods introduce a level of abstraction which makes the code 
+// easier to read and much simpler and faster to write.
+
+// But have you ever wondered what the worst time and space complexities (Big O) 
+// of such methods are or how they work? They may look like simple one-liners, 
+// but a lot goes under the hood.
+
+// There is no specified time complexity guarantee for any array operation. 
+// How arrays perform depends on the underlying data structure the engine chooses. 
+// Engines might also have different representations, and switch between them depending on certain heuristics. 
+
+// The array operations are almost always optimized to run according to the runtime engine it represents.
+
+// Big O notation is a means to compare the efficiency of different approaches to a problem. 
+// It’s not the only way to test how long an algorithm takes to run, but it’s the most common and we will stick to it in this article.
+// As we explained, Big O notation is a way to measure the time it will take an algorithm to run and the space in memory that a calculation will take, 
+// that stays consistent regardless of the user’s device.
+
+// How Do We Assert the Time Complexity?
+// Instead of taking the time with a stopwatch or setting a time out function, we focus on counting the number of steps or mathematical operations 
+// needed for the completion of a particular algorithm, because that will always remain fixed.
+
+// Let’s talk about this calculation we mentioned. Counting the steps is not enough. 
+// The number of elements we iterate over can affect the number of actions we will take and so the count itself. 
+// As the input grows, so can the runtime of the algorithm.
+
+// Constant Time Complexity O(1) means only one step is counted. 
+// Well, not necessarily one, any constant number, could be 1, 5 or 30. 
+// What’s important is that it stays constant regardless of the input size, no matter how large or small it is.
+
+// Linear Time Complexity O(n) means we will need to make the calculation constant number of times for each element 
+// (when n is the number of elements) so as the input grows, the runtime grows.
+
+
+//#region Time Complexity of JS Map
+
 // 1. We can assume good hash table implementations have practically O(1) time complexity.
 // 2. Here is a blog posted by V8 team explains how some memory optimization was done on its hashtable 
 //    implementation for Map, Set, WeakSet, and WeakMap: Optimizing hash tables: hiding the hash code
@@ -532,66 +577,62 @@ if(!array.length)
 
 //#endregion
 
-//#region Time Complexity of Javascript array Methods
+//#region Time Complexity of JS Array Methods 
 
-// Mutator Methods
-
-    // 1. push() - 0(1)
+    // push() - 0(1)
     // Add a new element to the end of the array.
 
-    // 2. pop() - 0(1)
+    // pop() - 0(1)
     // Delete the last element of the array
 
-    // 3. shift() - 0(n)
+    // shift() - 0(n)
     // Delete the first element of the array
 
-    // 4. unshift() - 0(n)
+    // unshift() - 0(n)
     // Add one or more elements in the beginning of the array
 
-    // 5. splice() - 0(n)
+    // splice() - 0(n)
     // Remove, add or replace a new element indicate by index.
 
-    // 6. sort() - 0(n log(n))
+    // slice() - O(n)
+    // The slice() method returns a shallow copy of a portion of an array into a new array object
+
+    // sort() - 0(n log(n))
     // Modify the array, ordered by a compare Function.
+    // For bigger arrays, quicksort is usually used to sort the array.
 
+    // toString() - O(n)
+    // The toString() method returns a string representing the specified array and its elements.[10]
 
-// Accessor methods
-
-    // 1. concat() - 0(n)
+    // concat() - 0(n)
     // Create a new array with the union of two or more arrays.
 
-    // 2. slice() - 0(n)
+    // slice() - 0(n)
     // Return a copy of a sub array between two index, start and end.
     // Important Note: if you modify the original array, the value also will be modify in the copy array.
 
-    // 3. indexOf() - 0(n)
+    // indexOf() - 0(n)
     // Return the first index of the element that exists in the array, and if not exists return-1.
 
-
-// Iteration methods
-
-    // 1. forEach() - 0(n)
+    // forEach() - 0(n)
     // Just execute a function for each element in the array.
 
-    // 2. map() - 0(n)
+    // map() - 0(n)
     // Create a new array with the result of the callback function (this function is executed for each item same as forEach)
 
-    // 3. filter() - 0(n)
+    // filter() - 0(n)
     // Create a new array with the elements that apply the given filter condition as true.
 
-    // 4. reduce() - 0(n)
+    // reduce() - 0(n)
     // Return a single value after applying the reduction function for each element.
 
-
-// Other methods
-
-    // 1. some() - 0(n)
+    // some() - 0(n)
     // Return a boolean value as true if found one or more item that apply the given condition, and return false if not (also if the array is empty).
     
-    // 2. every() - 0(n)
+    // every() - 0(n)
     // This function Return a boolean value as true if all the items apply the given condition, and false if not.
 
-    // 3. split(del) - O(n*del.length)
+    // split(del) - O(n*del.length)
     // With an empty delimiter argument, split is essentially equivalent to:
 
     var len = string.length;
@@ -603,14 +644,50 @@ if(!array.length)
     // This is O(len).
     // With a delimiter, it becomes O(string.length * delimiter.length), because at each step in the loop it has to test whether there's a match for delimiter.
 
-    // 4. reverse() - O(n)
+    // reverse() - O(n)
     // The reverse() method reverses an array in-place. The first array element becomes the last, and the last array element becomes the first.
+    const arr = [1, 2, 3];
+    const reversed = arr.reverse()
 
-    // 5. join() - O(n)
+    // join() - O(n)
     // The join() method creates and returns a new string by concatenating all of the elements in an array
 
+    // at() - O(1)
+    // The method does not iterate through the array to get the element. 
+    // It uses the index given directly.
+
+    const arr = [10, 20, 30, 40]
+    console.log(arr.at(1))
+
+    // concat() - O(n)
+    // The concat() method is used to merge two or more arrays which returns a shallow-copied new array.
+
+    const arr1 = ['Hello', 'World', 'JS'];
+    const arr2 = [1, 2, 3];
+    const arr3 = arr1.concat(arr2);
+
+    // entries() - O(n)
+    // The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+
+    // find() - O(n)
+    // The find() method returns the first element in the provided array that satisfies the provided testing function.
+
+    // from() - O(n)
+    // The Array.from() static method creates a new, shallow-copied Array instance from an iterable
+
+    // includes() - O(n)
+    // The includes() method checks whether a value or element exists in the array and returns true or false
+
+    // … (spread syntax) - O(n)
+    // The spread syntax(...) allows an iterable, such as an array or string, to be expanded in places where zero or more arguments 
+    // (for function calls) or elements (for array literals) are expected.
+
+    const arr = [1, 2, 3];
+    const arr2 = [...arr];
 
     // Link: https://javascript.plainenglish.io/under-the-hood-worst-case-complexities-workings-of-popular-js-array-methods-739d5fef314a
+
+//#endregion
 
 
 //#endregion
