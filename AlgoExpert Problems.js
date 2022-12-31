@@ -62,6 +62,20 @@ function firstNonRepeatingCharacter(string) {
     return filtered.length !== 0 ? chars.indexOf(filtered[0][0]) : -1;
 }
 
+// another approach
+// O(n) time | O(1) space
+function firstNonRepeatingCharacter(string) {
+    charFrequencies = {};
+    for (const letter of string) {
+        letter in charFrequencies ? charFrequencies[letter]++ : charFrequencies[letter] = 1;
+    }
+    for (let index = 0; index < string.length; index++) {
+        const c = string[index];
+        if(charFrequencies[c] === 1) return index;
+    }
+    return -1;
+}
+
 console.log(firstNonRepeatingCharacter('aaaaaaaaaaaaaaaaaaaabbbbbbbbbbcccccccccccdddddddddddeeeeeeeeffghgh'));
 
 
