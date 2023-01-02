@@ -503,6 +503,45 @@ function sortedSquaredArray(array) {
 
 //#endregion
 
+//#region nth-fibonacci 
+
+// O(2^n) time | O(n) space
+function getNthFib(n) {
+    return getFib(n-1);
+    function getFib(num) {
+        if (num === 0) return 0;
+        if (num === 1) return 1;
+        return getFib(num - 1) + getFib(num - 2)
+    }
+}
+
+// alternate approach 
+// O(n) time | O(n) space
+function getNthFib(n, fibObject = { 1: 0, 2: 1 }) {
+    if (n in fibObject) return fibObject[n];
+    fibObject[n] = getNthFib(n - 1, fibObject) + getNthFib(n - 2, fibObject);
+    return fibObject[n];
+}
+
+// alternate approach 
+// O(n) time | O(1) space
+function getNthFib(n) {
+    const lastTwo = [0,1];
+    let counter = 3;
+    while (counter <= n) {
+        let next = lastTwo[0] + lastTwo[1];
+        lastTwo[0] = lastTwo[1];
+        lastTwo[1] = next;
+        counter++;
+    }
+    return n > 1 ? lastTwo[1] : lastTwo[0]; 
+}
+
+console.log(getNthFib(6));
+
+//#endregion
+
+
 //#endregion
 
 
