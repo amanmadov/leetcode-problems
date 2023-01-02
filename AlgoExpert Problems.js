@@ -636,6 +636,29 @@ console.log(semordnilap(arr));
 
 //#endregion
 
+//#region binary-search 
+
+// O(log(n)) time | O(1) space
+function binarySearch(array, target) {
+    let middleIndex = Math.floor(array.length / 2);
+    let rightIndex = array.length - 1;
+    let leftIndex = 0;
+    while (leftIndex <= rightIndex) {
+        const middle = array[middleIndex];
+        if (middle === target) return middleIndex;
+        if (middle > target) rightIndex = middleIndex - 1;
+        if (middle < target) leftIndex = middleIndex + 1;
+        middleIndex = Math.floor((rightIndex + leftIndex) / 2);
+    }
+    return -1;
+}
+
+let arr = [0, 1, 21, 33, 45, 45, 61, 71, 72, 73];
+let target = 33;
+console.log(binarySearch(arr, target));
+
+//#endregion
+
 //#endregion
 
 
