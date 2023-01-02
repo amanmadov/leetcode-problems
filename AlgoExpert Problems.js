@@ -154,6 +154,24 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
     return redShirtHeights.every((el,ind) => isRedTaller ? el > blueShirtHeights[ind] : el < blueShirtHeights[ind]);
 }
 
+// alternate approach
+// O(nlog(n)) time | O(1) space - where n is the number of students
+function classPhotos(redShirtHeights, blueShirtHeights) {
+    redShirtHeights.sort((a, b) => a - b);
+    blueShirtHeights.sort((a, b) => a - b);
+
+    for (let index = 0; index < redShirtHeights.length; index++) {
+        if (redShirtHeights[0] > blueShirtHeights[0]) {
+            if (redShirtHeights[index] <= blueShirtHeights[index]) return false;
+        } else {
+            if (redShirtHeights[index] >= blueShirtHeights[index]) return false;
+        }
+    }
+
+    return true;
+}
+
+
 let reds = [5,8,1,3,4];
 let blues = [6,9,2,4,5];
 
@@ -526,7 +544,7 @@ function getNthFib(n, fibObject = { 1: 0, 2: 1 }) {
 // alternate approach 
 // O(n) time | O(1) space
 function getNthFib(n) {
-    const lastTwo = [0,1];
+    const lastTwo = [0, 1];
     let counter = 3;
     while (counter <= n) {
         let next = lastTwo[0] + lastTwo[1];
@@ -534,7 +552,7 @@ function getNthFib(n) {
         lastTwo[1] = next;
         counter++;
     }
-    return n > 1 ? lastTwo[1] : lastTwo[0]; 
+    return n > 1 ? lastTwo[1] : lastTwo[0];
 }
 
 console.log(getNthFib(6));
