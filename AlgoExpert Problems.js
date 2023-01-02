@@ -559,7 +559,6 @@ console.log(getNthFib(6));
 
 //#endregion
 
-
 //#region minimum-waiting-time 
 
 function minimumWaitingTime(queries) {
@@ -587,6 +586,53 @@ function minimumWaitingTime(queries) {
 
 let arr = [3, 2, 1, 2, 6];
 console.log(minimumWaitingTime(arr));
+
+//#endregion
+
+//#region semordnilap 
+
+// semordnilap
+function semordnilap(words) {
+    const map = new Map();
+    const pairs = [];
+
+    for (const word of words) {
+        const reversedWord = reverse(word);
+        !map.has(reversedWord) ? map.set(word) : pairs.push([reversedWord,word]);
+    }
+
+    return pairs;
+
+    function reverse(word) {
+        let reversed = '';
+        for (let i = word.length - 1; i >= 0; i--) {
+            reversed += word[i];
+        }
+        return reversed;
+    }
+}
+
+// alternate approach
+// O(n * m) time | O(n * m) space 
+// where n is the number of words and m is the length of the longest word
+function semordnilap(words) {
+    let wordSet = new Set(words);
+    const pairs = [];
+
+    for (const word of words) {
+        const reversedWord = word.split('').reverse().join('');
+        if(wordSet.has(reversedWord) && reversedWord !== word){
+            pairs.push([word, reversedWord]);
+            wordSet.delete(word);
+            wordSet.delete(reversedWord);
+        }
+    }
+
+    return pairs;
+}
+
+let arr = ["diaper", "abc", "test", "cba", "repaid"];
+console.log(semordnilap(arr));
 
 //#endregion
 
