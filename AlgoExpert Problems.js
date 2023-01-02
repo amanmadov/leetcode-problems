@@ -351,6 +351,28 @@ function tournamentWinner(competitions, results) {
     return sortedMap.entries().next().value[0];
 }
 
+// alternate approach O(n) time | O(k) space where k is the number of teams
+function tournamentWinner(competitions, results) {
+    const HOME_TEAM_WON = 1;
+    let currentBestTeam = '';
+    const scores = {};
+
+    for (let index = 0; index < competitions.length; index++) {
+        const result = results[index];
+        const [homeTeam, awayTeam] = competitions[index];
+        const winningTeam = result === HOME_TEAM_WON ? homeTeam : awayTeam;
+        updateScores(winningTeam, 3, scores);
+        
+        if(scores[winningTeam] > scores[currentBestTeam]) currentBestTeam = winningTeam;
+
+        return currentBestTeam;
+
+        function updateScores(team, points, scores) {
+            (!(team in scores)) ? scores[team] = 0 : scores[team] += points;
+        }
+    }
+}
+
 let comp = [
     ['HTML', 'C#'],
     ['C#', 'Python'],
@@ -539,7 +561,15 @@ let valAtGivenIndex = array.at(givenIndex);
 // checking array length if (array.length < 1)
 if(!array.length)
 
+// Checking if an object has a given property using in operator
+// 'myProp' in object also determines whether myProp property exists in object.
 
+const hero = {
+  name: 'Batman'
+};
+
+'name' in hero;     // => true
+'realName' in hero; // => false
 
 //#endregion
 
