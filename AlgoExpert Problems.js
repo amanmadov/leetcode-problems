@@ -471,6 +471,37 @@ console.log(isPalindrome(str));
 
 //#endregion
 
+//#region sorted-squared-array 
+
+function sortedSquaredArray(array) {
+    return array.map(el => el * el).sort((a, b) => a - b);
+}
+
+// alternate approach O(n) time | O(n) space 
+function sortedSquaredArray(array) {
+    const squared = new Array(array.length).fill(0);
+    let smallValueIndex = 0;
+    let largeValueIndex = array.length - 1;
+
+    for (let index = array.length - 1; index >= 0; index--) {
+        let small = array[smallValueIndex];
+        let large = array[largeValueIndex];
+
+        if (Math.abs(small) > Math.abs(large)) {
+            squared[index] = small * small;
+            smallValueIndex++;
+        } else {
+            squared[index] = large * large;
+            largeValueIndex--;
+        }
+    }
+
+    return squared;
+}
+
+
+
+//#endregion
 
 //#endregion
 
