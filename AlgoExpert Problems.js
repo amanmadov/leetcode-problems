@@ -560,6 +560,36 @@ console.log(getNthFib(6));
 //#endregion
 
 
+//#region minimum-waiting-time 
+
+function minimumWaitingTime(queries) {
+    queries.sort((a, b) => a - b);
+    let totalDuration = 0;
+    let prevSum = 0;
+    for (let index = 0; index < queries.length; index++) {
+        totalDuration += prevSum;
+        prevSum += queries[index];
+    }
+    return totalDuration;
+}
+
+// alternate approach
+// O(nlogn) time | O(1) space - where n is the number of queries
+function minimumWaitingTime(queries) {
+    queries.sort((a, b) => a - b);
+    let totalDuration = 0;
+    for (let index = 0; index < queries.length; index++) {
+        let queriesLeft = queries.length - 1 - index;
+        totalDuration += queries[index] * queriesLeft;
+    }
+    return totalDuration;
+}
+
+let arr = [3, 2, 1, 2, 6];
+console.log(minimumWaitingTime(arr));
+
+//#endregion
+
 //#endregion
 
 
