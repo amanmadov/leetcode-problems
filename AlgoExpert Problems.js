@@ -76,6 +76,25 @@ function firstNonRepeatingCharacter(string) {
     return -1;
 }
 
+// another approach with single for loop
+// O(n) time | O(n) space
+function firstNonRepeatingCharacter(string) {
+    let multiple = new Set();
+    let single = new Map();
+    for (const [index, char] of string.split('').entries()) {
+        if (!multiple.has(char)) {
+            multiple.add(char);
+            single.set(char, index);
+        }
+        else {
+            if (single.has(char)) {
+                single.delete(char);
+            }
+        }
+    }
+    return single.size > 0 ? single.entries().next().value[1] : -1
+}
+
 console.log(firstNonRepeatingCharacter('aaaaaaaaaaaaaaaaaaaabbbbbbbbbbcccccccccccdddddddddddeeeeeeeeffghgh'));
 
 
